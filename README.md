@@ -1,6 +1,6 @@
 # Gym Membership System
 
-this is a small python project for my uni coursework (COM5020).
+this is a small python project for my university coursework.
 it's just a basic system to manage gym members. not the best, just learning.
 
 ## features
