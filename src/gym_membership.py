@@ -27,3 +27,11 @@ class GymSystem:
         else:
             for m in self.members.values():
                 print(m.member_id, m.name, m.m_type, m.status)
+                
+    def search_member(self, name):
+        # find member by name
+        for m in self.members.values():
+            if m.name.lower() == name.lower():
+                print("found:", m.member_id, m.name, m.m_type, m.status)
+                return
+        print("not found")
