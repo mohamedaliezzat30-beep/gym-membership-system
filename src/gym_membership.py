@@ -43,3 +43,22 @@ class GymSystem:
             print("member deleted")
         else:
             print("id not found")
+
+    def sort_members(self):
+        # bubble sort by name
+        keys = list(self.members.keys())
+
+        # basic bubble sort
+        for i in range(len(keys)):
+            for j in range(len(keys) - 1):
+                if self.members[keys[j]].name.lower() > self.members[keys[j+1]].name.lower():
+                    keys[j], keys[j+1] = keys[j+1], keys[j]
+
+        # rebuild dictionary in sorted order
+        sorted_members = {}
+        for k in keys:
+            sorted_members[k] = self.members[k]
+
+        self.members = sorted_members
+        print("members sorted by name")
+
