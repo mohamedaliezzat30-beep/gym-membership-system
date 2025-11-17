@@ -1,7 +1,14 @@
 # Gym Membership System CW1 start
 
+# Member class, to store member details
 
-# I'm starting my Gym System class, just making the structure for now
+class Member:
+    def __init__(self, member_id, name, m_type):
+        self.member_id = member_id
+        self.name = name
+        self.m_type = m_type
+        self.status = "Active"   # default status
+
 
 class GymSystem:
     def __init__(self):
