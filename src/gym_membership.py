@@ -35,3 +35,11 @@ class GymSystem:
                 print("found:", m.member_id, m.name, m.m_type, m.status)
                 return
         print("not found")
+
+    def delete_member(self, member_id):
+        # delete a member by id
+        if member_id in self.members:
+            del self.members[member_id]
+            print("member deleted")
+        else:
+            print("id not found")
