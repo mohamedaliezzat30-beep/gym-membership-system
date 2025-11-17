@@ -62,3 +62,46 @@ class GymSystem:
         self.members = sorted_members
         print("members sorted by name")
 
+# menu system to run everything
+def main():
+    system = GymSystem()
+
+    while True:
+        print("\n-- gym menu --")
+        print("1 - add member")
+        print("2 - view members")
+        print("3 - search member")
+        print("4 - delete member")
+        print("5 - sort members")
+        print("6 - exit")
+
+        choice = input("enter choice: ")
+
+        if choice == "1":
+            name = input("name: ")
+            m_type = input("membership type: ")
+            system.add_member(name, m_type)
+
+        elif choice == "2":
+            system.view_members()
+
+        elif choice == "3":
+            name = input("enter name: ")
+            system.search_member(name)
+
+        elif choice == "4":
+            member_id = input("enter member id: ")
+            system.delete_member(member_id)
+
+        elif choice == "5":
+            system.sort_members()
+
+        elif choice == "6":
+            print("bye")
+            break
+
+        else:
+            print("wrong choice")
+
+
+main()
