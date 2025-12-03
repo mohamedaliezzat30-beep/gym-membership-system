@@ -1,115 +1,114 @@
-# Gym Membership System CW1 start
+# Gym Membership System CW1
 
-# Member class, to store member details
-class Member: 
+# Class to store each member's information
+class Member:
     def __init__(self, member_id, name, m_type):
-        self.member_id = member_id   # save the ID number
-        self.name = name   # save name
-        self.m_type = m_type   # save membership type
-        self.status = "Active"  # default status (Active)
+        self.member_id = member_id
+        self.name = name
+        self.m_type = m_type
+        self.status = "Active"  # default status
 
-# main system class (controls everything), and tracks all members
+# Main system class
 class GymSystem:
     def __init__(self):
-        self.members = {}   # That's gonna store members here later
-        self.next_id = 1    # That's for auto IDs
+        self.members = {}  # dictionary to store members
+        self.next_id = 1   # auto ID counter
 
-    # add a new member
+    # Add new member
     def add_member(self, name, m_type):
-        mid = str(self.next_id).zfill(3)   # creates ID like 001
-        self.members[mid] = Member(mid, name, m_type)  # Save member
-        self.next_id += 1    # increase next ID number for the next new member
-        print("added member:", name)
+        member_id = str(self.next_id).zfill(3)
+        self.members[member_id] = Member(member_id, name, m_type)
+        self.next_id += 1
+        print("Member added:", name)
 
-    # show all members
+    # View all members
     def view_members(self):
         if len(self.members) == 0:
-            print("no members yet")
+            print("No members yet")
         else:
-            for m in self.members.values():  # loop through everyone
+            for m in self.members.values():
                 print(m.member_id, m.name, m.m_type, m.status)
 
-    # search member by name (check one by one)
+    # Search by name
     def search_member(self, name):
-        # find member by name
         for m in self.members.values():
-            if m.name.lower() == name.lower():  # match name
-                print("found:", m.member_id, m.name, m.m_type, m.status)
+            if m.name.lower() == name.lower():
+                print("Found:", m.member_id, m.name, m.m_type, m.status)
                 return
-        print("not found")
+        print("Not found")
 
-
-    # delete member using ID
+    # Delete a member
     def delete_member(self, member_id):
-        # delete a member by id
         if member_id in self.members:
-            del self.members[member_id]  # remove
-            print("member deleted")
+            del self.members[member_id]
+            print("Member deleted")
         else:
-            print("id not found")
+            print("ID not found")
 
-
-    # sort members alphabetically by name (Bubble Sort)
+    # Sort members (very simple method)
     def sort_members(self):
-        # bubble sort by name
-        keys = list(self.members.keys())   # get the IDs
-
-
-        # bubble sort loop
-        for i in range(len(keys)):
-            for j in range(len(keys) - 1):
-                if self.members[keys[j]].name.lower() > self.members[keys[j+1]].name.lower():
-                    keys[j], keys[j+1] = keys[j+1], keys[j]
-
-        # rebuild dictionary in sorted order
-        sorted_members = {}
-        for k in keys:
-            sorted_members[k] = self.members[k]
-
+        sorted_members = dict(sorted(self.members.items(), key=lambda item: item[1].name.lower()))
         self.members = sorted_members
-        print("members sorted by name")
+        print("Members sorted by name")
 
-# menu system to run everything
+# Let the user choose membership type
+def choose_membership_type():
+    print("Choose membership type:")
+    print("1 - Basic")
+    print("2 - Premium")
+    print("3 - VIP")
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        return "Basic"
+    elif choice == "2":
+        return "Premium"
+    elif choice == "3":
+        return "VIP"
+    else:
+        print("Invalid choice, default = Basic")
+        return "Basic"
+
+# Main menu
 def main():
-    system = GymSystem()  # make system object
+    system = GymSystem()
 
-    # loop forever until exit
     while True:
-        print("\n-- gym menu --")
-        print("1 - add member")
-        print("2 - view members")
-        print("3 - search member")
-        print("4 - delete member")
-        print("5 - sort members")
-        print("6 - exit")
+        print("\n--- GYM MENU ---")
+        print("1 - Add member")
+        print("2 - View members")
+        print("3 - Search member")
+        print("4 - Delete member")
+        print("5 - Sort members")
+        print("6 - Exit")
 
-        choice = input("enter choice: ") # ask user to choose one option
+        choice = input("Enter choice: ")
 
         if choice == "1":
-            name = input("name: ")
-            m_type = input("membership type: ")
+            name = input("Enter name: ")
+            m_type = choose_membership_type()
             system.add_member(name, m_type)
 
         elif choice == "2":
             system.view_members()
 
         elif choice == "3":
-            name = input("enter name: ")
+            name = input("Enter name to search: ")
             system.search_member(name)
 
         elif choice == "4":
-            member_id = input("enter member id: ")
+            member_id = input("Enter ID to delete: ")
             system.delete_member(member_id)
 
         elif choice == "5":
             system.sort_members()
 
         elif choice == "6":
-            print("See yaaa")  # exit program
+            print("Goodbye!")
             break
 
         else:
-            print("wrong choice mate, go again") # wrong input
+            print("Invalid choice, try again")
 
-
-main() # Run the program
+# Run the program
+main()
