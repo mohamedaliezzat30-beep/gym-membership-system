@@ -1,7 +1,8 @@
 # Gym Membership System
 
-this is a small python project for my university coursework.
-it's just a basic system to manage gym members. not the best, just learning.
+This is a small Python project made for my university coursework.  
+It is a simple program that manages gym members. The system lets the user add members, view all members, search for someone, delete members, and sort the list by name.  
+The project is beginner-friendly because the goal was to practise Python basics and learn how to use GitHub.
 
 ## features
 - add member
