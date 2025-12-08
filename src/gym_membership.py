@@ -111,4 +111,5 @@ def main():
             print("Invalid choice, try again")
 
 # Run the program
-main()
+if __name__ == "__main__":
+    main()
