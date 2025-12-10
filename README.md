@@ -1,20 +1,31 @@
 # Gym Membership System
 
-This is a small Python project made for my university coursework.  
-It is a simple program that manages gym members. The system lets the user add members, view all members, search for someone, delete members, and sort the list by name.  
-The project is beginner-friendly because the goal was to practise Python basics and learn how to use GitHub.
+A simple Python program for coursework. It manages gym members and lets the user add members, view them, search, delete, and sort the list by name.
 
 ## Features
-- add member
-- view members
-- search for a member
-- delete a member
-- sort members by name (bubble sort)
-- simple menu system
+- Add a new member
+- View all members
+- Search for a member by name
+- Delete a member using ID
+- Sort members by name
+- Choose membership type (Basic, Premium, VIP)
 
-## How to run
-just run the file gym_membership.py in python.
-the menu will show up and you can pick options.
+## How to Run
+Make sure Python is installed, then run:
 
-## Goal
-mainly learning data structures and algorithms and using github properly.
+```bash
+gym_membership.py
+```
+
+Testing
+
+The program was tested manually using the menu.
+All test results are recorded in test-cases.md.
+
+Files:
+
+- gym_membership.py – main program
+
+- test-cases.md – manual test cases
+
+- README.md – project info
