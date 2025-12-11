@@ -1,5 +1,4 @@
 # Gym Membership System CW1
-# Simple version made by me (student friendly, easy to understand)
 
 # Class to store information about each member
 class Member:
