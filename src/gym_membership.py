@@ -1,22 +1,24 @@
 # Gym Membership System CW1
+# Simple version made by me (student friendly, easy to understand)
 
-# Class to store each member's information
+# Class to store information about each member
 class Member:
     def __init__(self, member_id, name, m_type):
         self.member_id = member_id
         self.name = name
         self.m_type = m_type
-        self.status = "Active"  # default status
+        self.status = "Active"    # default status for everyone
 
-# Main system class
+
+# Main system class that controls everything
 class GymSystem:
     def __init__(self):
-        self.members = {}  # dictionary to store members
-        self.next_id = 1   # auto ID counter
+        self.members = {}   # I am using a dictionary to store members
+        self.next_id = 1    # This is for creating auto IDs like 001, 002...
 
-    # Add new member
+    # Add a new member
     def add_member(self, name, m_type):
-        member_id = str(self.next_id).zfill(3)
+        member_id = str(self.next_id).zfill(3)   # makes 3-digit ID
         self.members[member_id] = Member(member_id, name, m_type)
         self.next_id += 1
         print("Member added:", name)
@@ -29,7 +31,7 @@ class GymSystem:
             for m in self.members.values():
                 print(m.member_id, m.name, m.m_type, m.status)
 
-    # Search by name
+    # Search for a member by name (linear search)
     def search_member(self, name):
         for m in self.members.values():
             if m.name.lower() == name.lower():
@@ -37,7 +39,7 @@ class GymSystem:
                 return
         print("Not found")
 
-    # Delete a member
+    # Delete a member using ID
     def delete_member(self, member_id):
         if member_id in self.members:
             del self.members[member_id]
@@ -45,13 +47,34 @@ class GymSystem:
         else:
             print("ID not found")
 
-    # Sort members (very simple method)
+    # Sort members by name using Bubble Sort
     def sort_members(self):
-        sorted_members = dict(sorted(self.members.items(), key=lambda item: item[1].name.lower()))
+        if len(self.members) <= 1:
+            print("Not enough members to sort")
+            return
+
+        # get list of the IDs so we can swap them
+        keys = list(self.members.keys())
+
+        # Bubble Sort (simple version)
+        for i in range(len(keys)):
+            for j in range(len(keys) - 1):
+                name1 = self.members[keys[j]].name.lower()
+                name2 = self.members[keys[j + 1]].name.lower()
+
+                if name1 > name2:   # if wrong order, swap them
+                    keys[j], keys[j + 1] = keys[j + 1], keys[j]
+
+        # Make a new dictionary in this sorted order
+        sorted_members = {}
+        for k in keys:
+            sorted_members[k] = self.members[k]
+
         self.members = sorted_members
         print("Members sorted by name")
 
-# Let the user choose membership type
+
+# Function to choose membership type
 def choose_membership_type():
     print("Choose membership type:")
     print("1 - Basic")
@@ -66,10 +89,11 @@ def choose_membership_type():
     elif choice == "3":
         return "VIP"
     else:
-        print("Invalid choice, default = Basic")
+        print("Invalid choice, defaulting to Basic")
         return "Basic"
 
-# Main menu
+
+# Main menu loop
 def main():
     system = GymSystem()
 
@@ -109,6 +133,7 @@ def main():
 
         else:
             print("Invalid choice, try again")
+
 
 # Run the program
 if __name__ == "__main__":
