@@ -11,7 +11,7 @@ These tests were done by running the program using the menu in the terminal.
 | 5 | Search for missing member | Search “Unknown” | Show “Not found” | Message shown | PASS |
 | 6 | Delete a member | Delete Ali using his ID | Member is removed | Deleted correctly | PASS |
 | 7 | View after deleting | View members again | System empty message | Shown correctly | PASS |
-| 8 | Sort members | Add Zed + Sara, then sort | Names ordered alphabetically | Sorted correctly | PASS |
+| 8 | Sort members | Add Mo + Malak, then sort | Names ordered alphabetically | Sorted correctly | PASS |
 | 9 | Wrong menu choice | Enter 10 or letter | Show error message | Error shown | PASS |
 | 10 | Membership type | Choose Basic, Premium, VIP | Correct type saved | Works correctly | PASS |
 | 11 | Many values | Add 20–50 random names | Program should still work | Works fine | PASS |
